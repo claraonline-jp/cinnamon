@@ -9,14 +9,14 @@ use Net::OpenSSH;
 use Cinnamon::HandleManager;
 use Cinnamon::Logger;
 
+has [qw/host user/] => ( is => 'ro' );
+
 sub connection {
     my $self = shift;
     return Net::OpenSSH->new(
-        $self->{host}, user => $self->{user},
+        $self->host, user => $self->user,
     );
 }
-
-sub host { $_[0]->{host} }
 
 sub execute {
     my ($self, $commands, $opts) = @_;
